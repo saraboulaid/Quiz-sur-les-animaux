@@ -1,4 +1,4 @@
-package com.example.animal_quiz;
+package com.example.animal_quiz.models;
 
 import java.util.List;
 

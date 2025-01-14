@@ -1,4 +1,4 @@
-package com.example.animal_quiz;
+package com.example.animal_quiz.utils;
 
 import android.content.ContentValues;
 import android.content.Context;

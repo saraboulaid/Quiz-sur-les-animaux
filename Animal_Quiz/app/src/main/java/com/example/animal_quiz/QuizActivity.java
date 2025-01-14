@@ -40,7 +40,7 @@ public class QuizActivity extends AppCompatActivity {
         // Initialiser les questions
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         QuestionGenerator questionGenerator = new QuestionGenerator(dbHelper);
-        questions = questionGenerator.generateRandomQuestions(2);
+        questions = questionGenerator.generateRandomQuestions(10);
 
         if (questions.isEmpty()) {
             Toast.makeText(this, "Aucune question disponible", Toast.LENGTH_SHORT).show();
@@ -69,7 +69,6 @@ public class QuizActivity extends AppCompatActivity {
         // Charger l'image
         String imagePath = currentQuestion.getAnimal().getImagePath();
         int imageResId = getResources().getIdentifier(imagePath.replace(".png", ""), "drawable", getPackageName());
-
         if (imageResId != 0) {
             animalImage.setImageResource(imageResId);
         } else {
@@ -86,6 +85,15 @@ public class QuizActivity extends AppCompatActivity {
             RadioButton radioButton = new RadioButton(this);
             radioButton.setText(options.get(i));
             radioButton.setId(i);
+            radioButton.setTextSize(16);
+            radioButton.setPadding(8, 8, 8, 8);
+            radioButton.setLayoutParams(new RadioGroup.LayoutParams(
+                    RadioGroup.LayoutParams.MATCH_PARENT,
+                    RadioGroup.LayoutParams.WRAP_CONTENT
+            ));
+            ((RadioGroup.LayoutParams) radioButton.getLayoutParams()).setMargins(0, 8, 0, 8);
+            radioButton.setGravity(android.view.Gravity.START);
+
             answerOptions.addView(radioButton);
         }
 

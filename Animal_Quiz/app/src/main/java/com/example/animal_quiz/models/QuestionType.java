@@ -1,4 +1,4 @@
-package com.example.animal_quiz;
+package com.example.animal_quiz.models;
 
 public class QuestionType {
     private String questionText;
