@@ -28,6 +28,6 @@ Base de Données : SQLite
 Environnement : Android Studio
 UI : XML pour les mises en page
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-## Documentation du projet
+# Documentation du projet
 Le projet contient une documentation générée automatiquement à l'aide de JavaDoc. Vous pouvez la trouver dans le répertoire suivant : Animal_Quiz/documentation/
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
