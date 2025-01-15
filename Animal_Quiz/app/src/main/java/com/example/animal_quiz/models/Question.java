@@ -4,12 +4,12 @@ import java.util.List;
 
 public class Question {
     private Animal animal;
-    private String questionText;
+    private QuestionType questionType;
     private List<String> options;
 
-    public Question(Animal animal, String questionText, List<String> options) {
+    public Question(Animal animal, QuestionType questionType, List<String> options) {
         this.animal = animal;
-        this.questionText = questionText;
+        this.questionType = questionType;
         this.options = options;
     }
 
@@ -17,8 +17,8 @@ public class Question {
         return animal;
     }
 
-    public String getQuestionText() {
-        return questionText;
+    public QuestionType getQuestionType() {
+        return questionType;
     }
 
     public List<String> getOptions() {

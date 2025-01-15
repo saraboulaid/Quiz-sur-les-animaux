@@ -8,8 +8,9 @@ public class Animal {
     private String diet;
     private int isMammal;
     private String habitat;
+    private String description;
 
-    public Animal(int id, String name, String imagePath, String soundPath, String diet, int isMammal, String habitat) {
+    public Animal(int id, String name, String imagePath, String soundPath, String diet, int isMammal, String habitat, String description) {
         this.id = id;
         this.name = name;
         this.imagePath = imagePath;
@@ -17,6 +18,7 @@ public class Animal {
         this.diet = diet;
         this.isMammal = isMammal;
         this.habitat = habitat;
+        this.description = description;
     }
 
     public int getId() {
@@ -46,4 +48,19 @@ public class Animal {
     public String getHabitat() {
         return habitat;
     }
+
+    public String getDescription(){
+        return description;
+    }
+
+    public String getFieldValue(String field) {
+        switch (field) {
+            case "name": return this.getName();
+            case "diet": return this.getDiet();
+            case "isMammal": return this.isMammal() == 1 ? "Oui" : "Non";
+            case "habitat": return this.getHabitat();
+            default: return "";
+        }
+    }
 }
+

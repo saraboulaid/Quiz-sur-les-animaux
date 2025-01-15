@@ -1,5 +1,6 @@
 package com.example.animal_quiz;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.animal_quiz.models.Animal;
 import com.example.animal_quiz.models.Question;
 import com.example.animal_quiz.utils.DatabaseHelper;
 import com.example.animal_quiz.utils.QuestionGenerator;
@@ -26,6 +28,7 @@ public class QuizActivity extends AppCompatActivity {
 
     private List<Question> questions;
     private int currentQuestionIndex = 0;
+    private final int questionsCount = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,19 +49,42 @@ public class QuizActivity extends AppCompatActivity {
             Toast.makeText(this, "Aucune question disponible", Toast.LENGTH_SHORT).show();
             finish();
         } else {
+            // Récupérer l'index actuel de la question depuis VerifyAnswerActivity
+            currentQuestionIndex = getIntent().getIntExtra("question_index", 0);
             loadQuestion();
         }
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (currentQuestionIndex < questions.size() - 1) {
-                    currentQuestionIndex++;
-                    loadQuestion();
-                } else {
-                    Toast.makeText(QuizActivity.this, "Quiz terminé !", Toast.LENGTH_SHORT).show();
-                    finish();
+                // Vérifier si une réponse a été sélectionnée
+                int selectedId = answerOptions.getCheckedRadioButtonId();
+                if (selectedId == -1) {
+                    Toast.makeText(QuizActivity.this, "Veuillez sélectionner une réponse.", Toast.LENGTH_SHORT).show();
+                    return;
                 }
+                // Obtenir la réponse sélectionnée
+                RadioButton selectedRadioButton = findViewById(selectedId);
+                String selectedAnswer = selectedRadioButton.getText().toString();
+
+                // Obtenir la question actuelle
+                Question currentQuestion = questions.get(currentQuestionIndex);
+
+                String field = currentQuestion.getQuestionType().getField();
+                Animal animal = currentQuestion.getAnimal();
+                //récuperer la réponse correcte
+                String correctAnswer = animal.getFieldValue(field);
+
+                // Passer à l'activité VerifyAnswerActivity
+                Intent intent = new Intent(QuizActivity.this, VerifyAnswerActivity.class);
+
+                intent.putExtra("question_index", currentQuestionIndex +1);
+                intent.putExtra("correct_answer", correctAnswer);
+                intent.putExtra("selected_answer", selectedAnswer);
+                intent.putExtra("questions_Count", questionsCount);
+                intent.putExtra("description", animal.getDescription());
+
+                startActivity(intent);
             }
         });
     }
@@ -95,13 +121,6 @@ public class QuizActivity extends AppCompatActivity {
             radioButton.setGravity(android.view.Gravity.START);
 
             answerOptions.addView(radioButton);
-        }
-
-        // Mettre à jour le texte du bouton
-        if (currentQuestionIndex == questions.size() - 1) {
-            nextButton.setText("Terminer");
-        } else {
-            nextButton.setText("Suivant");
         }
     }
 }

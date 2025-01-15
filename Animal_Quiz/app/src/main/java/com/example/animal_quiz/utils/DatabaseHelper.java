@@ -26,6 +26,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_DIET = "diet";
     private static final String COLUMN_IS_MAMMAL = "isMammal";
     private static final String COLUMN_HABITAT = "habitat";
+    private static final String COLUMN_DESCRIPTION = "description";
 
     // Table QuestionTypes
     private static final String TABLE_QUESTION_TYPES = "QuestionTypes";
@@ -47,7 +48,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_SOUND_PATH + " TEXT NOT NULL, " +
                 COLUMN_DIET + " TEXT NOT NULL, " +
                 COLUMN_IS_MAMMAL + " INTEGER NOT NULL, " +
-                COLUMN_HABITAT + " TEXT NOT NULL)";
+                COLUMN_HABITAT + " TEXT NOT NULL," +
+                COLUMN_DESCRIPTION + " TEXT NOT NULL)";
         db.execSQL(CREATE_ANIMALS_TABLE);
 
         // Création de la table QuestionTypes
@@ -70,16 +72,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private void seedDatabase(SQLiteDatabase db) {
         // Ajouter 10 animaux
-        addAnimal(db, "Lion", "lion.png", "lion_roar.mp3", "Carnivore", 1, "Savane");
-        addAnimal(db, "Loup", "wolf.png", "wolf_howl.mp3", "Carnivore", 1, "Forêt");
-        addAnimal(db, "Dauphin", "dolphin.png", "dolphin_sound.mp3", "Carnivore", 1, "Océan");
-        addAnimal(db, "Éléphant", "elephant.png", "elephant_trumpet.mp3", "Herbivore", 1, "Savane");
-        addAnimal(db, "Aigle", "eagle.png", "eagle_screech.mp3", "Carnivore", 0, "Montagnes");
-        addAnimal(db, "Tigre", "tiger.png", "tiger_roar.mp3", "Carnivore", 1, "Forêt");
-        addAnimal(db, "Perroquet", "parrot.png", "parrot_chirp.mp3", "Herbivore", 0, "Forêt tropicale");
-        addAnimal(db, "Lapin", "rabbit.png", "rabbit_sound.mp3", "Herbivore", 1, "Forêt");
-        addAnimal(db, "Panda", "panda.png", "panda_sound.mp3", "Herbivore", 1, "Forêt");
-        addAnimal(db, "Grenouille", "frog.png", "frog_croak.mp3", "Herbivore", 0, "Marais");
+        addAnimal(db, "Lion", "lion.png", "lion_roar.mp3", "Carnivore", 1, "Savane",
+                "Le lion est appelé le roi des animaux. Il vit dans la savane avec sa famille appelée meute. Son rugissement peut s'entendre à plusieurs kilomètres.");
+        addAnimal(db, "Loup", "wolf.png", "wolf_howl.mp3", "Carnivore", 1, "Forêt",
+                "Le loup vit en meute et chasse en groupe. Il communique en hurlant la nuit. Il est très intelligent et rapide.");
+        addAnimal(db, "Dauphin", "dolphin.png", "dolphin_sound.mp3", "Carnivore", 1, "Océan",
+                "Le dauphin est un mammifère marin qui adore jouer. Il saute hors de l'eau et nage très vite. Il utilise des sons pour parler avec ses amis.");
+        addAnimal(db, "Éléphant", "elephant.png", "elephant_trumpet.mp3", "Herbivore", 1, "Savane",
+                "L'éléphant est le plus grand animal terrestre. Il a une longue trompe pour boire et ramasser de la nourriture. Il aime vivre en groupe.");
+        addAnimal(db, "Aigle", "eagle.png", "eagle_screech.mp3", "Carnivore", 0, "Montagnes",
+                "L'aigle est un oiseau majestueux qui vole haut dans le ciel. Il a une vue perçante pour repérer ses proies. Il vit souvent dans les montagnes.");
+        addAnimal(db, "Tigre", "tiger.png", "tiger_roar.mp3", "Carnivore", 1, "Forêt",
+                "Le tigre a un pelage rayé unique pour se cacher dans la forêt. Il est un excellent chasseur et adore nager. Il vit souvent seul.");
+        addAnimal(db, "Perroquet", "parrot.png", "parrot_chirp.mp3", "Herbivore", 0, "Forêt tropicale",
+                "Le perroquet a des plumes colorées et peut imiter les voix. Il vit dans la forêt tropicale et mange des fruits. C'est un oiseau très sociable.");
+        addAnimal(db, "Lapin", "rabbit.png", "rabbit_sound.mp3", "Herbivore", 1, "Forêt",
+                "Le lapin a de longues oreilles et aime manger des carottes. Il court très vite pour échapper aux prédateurs. Il vit dans des terriers.");
+        addAnimal(db, "Panda", "panda.png", "panda_sound.mp3", "Herbivore", 1, "Forêt",
+                "Le panda adore manger du bambou toute la journée. Il a une fourrure blanche et noire. Il vit dans les forêts de montagnes.");
+        addAnimal(db, "Grenouille", "frog.png", "frog_croak.mp3", "Herbivore", 0, "Marais",
+                "La grenouille saute très haut et vit près de l'eau. Elle mange de petits insectes. Sa peau est souvent verte ou colorée pour se camoufler.");
 
         // Ajouter des types de questions
         addQuestionType(db, "Quel est le nom de cet animal ?", "name");
@@ -88,7 +100,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         addQuestionType(db, "Où vit cet animal ?", "habitat");
     }
 
-    private void addAnimal(SQLiteDatabase db, String name, String imagePath, String soundPath, String diet, int isMammal, String habitat) {
+    private void addAnimal(SQLiteDatabase db, String name, String imagePath, String soundPath, String diet, int isMammal, String habitat, String description) {
         ContentValues values = new ContentValues();
         values.put(COLUMN_NAME, name);
         values.put(COLUMN_IMAGE_PATH, imagePath);
@@ -96,6 +108,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_DIET, diet);
         values.put(COLUMN_IS_MAMMAL, isMammal);
         values.put(COLUMN_HABITAT, habitat);
+        values.put(COLUMN_DESCRIPTION, description);
         db.insert(TABLE_ANIMALS, null, values);
     }
 
@@ -120,8 +133,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 String diet = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DIET));
                 int isMammal = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_IS_MAMMAL));
                 String habitat = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_HABITAT));
+                String description = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DESCRIPTION));
 
-                animals.add(new Animal(id, name, imagePath, soundPath, diet, isMammal, habitat));
+                animals.add(new Animal(id, name, imagePath, soundPath, diet, isMammal, habitat, description));
             }
             cursor.close();
         }

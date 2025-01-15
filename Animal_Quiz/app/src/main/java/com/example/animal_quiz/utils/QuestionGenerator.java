@@ -32,21 +32,11 @@ public class QuestionGenerator {
             Animal animal = animals.get(random.nextInt(animals.size()));
             QuestionType questionType = questionTypes.get(random.nextInt(questionTypes.size()));
 
-            String correctAnswer = getFieldValue(animal, questionType.getField());
+            String correctAnswer = animal.getFieldValue(questionType.getField());
             List<String> options = generateOptions(animals, correctAnswer, questionType.getField());
-            questions.add(new Question(animal, questionType.getQuestionText(), options));
+            questions.add(new Question(animal, questionType, options));
         }
         return questions;
-    }
-
-    private String getFieldValue(Animal animal, String field) {
-        switch (field) {
-            case "name": return animal.getName();
-            case "diet": return animal.getDiet();
-            case "isMammal": return animal.isMammal() == 1 ? "Oui" : "Non";
-            case "habitat": return animal.getHabitat();
-            default: return "";
-        }
     }
 
     private List<String> generateOptions(List<Animal> animals, String correctAnswer, String field) {
@@ -58,7 +48,7 @@ public class QuestionGenerator {
         Random random = new Random();
         while (options.size() < 4 && options.size() < distinctCount) { // Ajout de 3 distracteurs maximum
             Animal randomAnimal = animals.get(random.nextInt(animals.size()));
-            String value = getFieldValue(randomAnimal, field);
+            String value = randomAnimal.getFieldValue(field);
 
             if (!options.contains(value)) {
                 options.add(value);
