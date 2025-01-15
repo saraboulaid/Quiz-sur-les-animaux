@@ -126,7 +126,7 @@ public class QuizActivity extends AppCompatActivity {
         }
 
         // Charger le text de la question
-        questionText.setText(currentQuestion.getQuestionText());
+        questionText.setText(currentQuestion.getQuestionType().getQuestionText());
 
         // Charger les options de réponse
         answerOptions.removeAllViews();
