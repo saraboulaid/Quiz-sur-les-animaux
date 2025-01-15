@@ -58,6 +58,11 @@ public class Animal {
         return description;
     }
 
+    /**
+     * Récupère la valeur d'un champ spécifique de l'animal.
+     * @param field Le champ de l'information à récupérer.
+     * @return La valeur du champ sous forme de chaîne de caractères.
+     */
     public String getFieldValue(String field) {
         switch (field) {
             case "name": return this.getName();

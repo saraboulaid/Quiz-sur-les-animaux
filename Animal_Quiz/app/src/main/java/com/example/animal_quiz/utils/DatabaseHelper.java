@@ -12,12 +12,17 @@ import com.example.animal_quiz.models.QuestionType;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe helper pour gérer la base de données SQLite utilisée dans l'application.
+ * Permet de gérer les tables "Animals" et "QuestionTypes", ainsi que leurs données associées.
+ */
 public class DatabaseHelper extends SQLiteOpenHelper {
 
+    // Nom de la base de données et sa version
     private static final String DATABASE_NAME = "animalQuiz.db";
     private static final int DATABASE_VERSION = 1;
 
-    // Table Animals
+    // Définition des constantes pour la table Animals
     private static final String TABLE_ANIMALS = "Animals";
     private static final String COLUMN_ID = "id";
     private static final String COLUMN_NAME = "name";
@@ -28,12 +33,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_HABITAT = "habitat";
     private static final String COLUMN_DESCRIPTION = "description";
 
-    // Table QuestionTypes
+    // Définition des constantes pour la table QuestionTypes
     private static final String TABLE_QUESTION_TYPES = "QuestionTypes";
     private static final String COLUMN_QUESTION_ID = "id";
     private static final String COLUMN_QUESTION_TEXT = "questionText";
     private static final String COLUMN_FIELD = "field";
 
+    // Constructeur : Initialise la base de données
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -59,17 +65,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_FIELD + " TEXT NOT NULL)";
         db.execSQL(CREATE_QUESTION_TYPES_TABLE);
 
-        // Remplir les tables avec des données initiales
+        // Remplissage des tables avec des données initiales
         seedDatabase(db);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        // Suppression des tables existantes lors d'une mise à jour de la version
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ANIMALS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_QUESTION_TYPES);
-        onCreate(db);
+        onCreate(db); // Recréation des tables
     }
 
+    /**
+     * Remplissage initial des tables avec des données par défaut.
+     */
     private void seedDatabase(SQLiteDatabase db) {
         // Ajouter 10 animaux
         addAnimal(db, "Lion", "lion.png", "lion_roar.mp3", "Carnivore", 1, "Savane",
@@ -100,6 +110,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         addQuestionType(db, "Où vit cet animal ?", "habitat");
     }
 
+    /**
+     * Méthode pour ajouter un animal dans la table Animals.
+     */
     private void addAnimal(SQLiteDatabase db, String name, String imagePath, String soundPath, String diet, int isMammal, String habitat, String description) {
         ContentValues values = new ContentValues();
         values.put(COLUMN_NAME, name);
@@ -112,6 +125,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.insert(TABLE_ANIMALS, null, values);
     }
 
+    /**
+     * Méthode pour ajouter un type de question dans la table QuestionTypes.
+     */
     private void addQuestionType(SQLiteDatabase db, String questionText, String field) {
         ContentValues values = new ContentValues();
         values.put(COLUMN_QUESTION_TEXT, questionText);
@@ -119,6 +135,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.insert(TABLE_QUESTION_TYPES, null, values);
     }
 
+    /**
+     * Récupère tous les animaux de la table Animals.
+     */
     public List<Animal> getAllAnimals() {
         List<Animal> animals = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -142,6 +161,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return animals;
     }
 
+    /**
+     * Récupère tous les types de questions de la table QuestionTypes.
+     */
     public List<QuestionType> getAllQuestionTypes() {
         List<QuestionType> questionTypes = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -159,6 +181,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return questionTypes;
     }
 
+    /**
+     * Compte le nombre distinct de valeurs pour un champ donné dans la table Animals.
+     */
     public int getDistinctCount(String field) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT COUNT(DISTINCT " + field + ") AS distinctCount FROM " + TABLE_ANIMALS;
