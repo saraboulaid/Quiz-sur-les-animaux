@@ -11,12 +11,21 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+
+/**
+ * Activité qui permet à l'utilisateur d'écouter les sons de différents animaux
+ */
 public class Sounds_Activity extends AppCompatActivity {
+    /**
+     * Objet MediaPlayer utilisé pour lire les fichiers audio.
+     */
     MediaPlayer player;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sounds);
+
+        // Initialisation des boutons associés aux animaux
         ImageButton kangro = (ImageButton) findViewById(R.id.img1);
         ImageButton donkey = (ImageButton) findViewById(R.id.img2);
         ImageButton yak = (ImageButton) findViewById(R.id.img3);
@@ -26,6 +35,7 @@ public class Sounds_Activity extends AppCompatActivity {
         ImageButton lion = (ImageButton) findViewById(R.id.img7);
         ImageButton zebra = (ImageButton) findViewById(R.id.img8);
 
+        // Définition des actions pour chaque bouton
         kangro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,14 +87,23 @@ public class Sounds_Activity extends AppCompatActivity {
 
 
     }
+
+    /**
+     * Joue un fichier audio correspondant à un animal.
+     * Les sons sont identifiés par des noms passés en paramètre.
+     *
+     * @param _soundNames Le nom de l'animal pour lequel le son doit être joué.
+     */
     public void playAudio(String _soundNames)
     {
+        // Arrêter le lecteur audio actuel s'il existe
         if (player!= null)
         {
             stopPlayer();
             player = null;
         }
 
+        // Sélectionner le fichier audio en fonction du nom de l'animal
         if(_soundNames == "kangro")
         {
             player = MediaPlayer.create(this,R.raw.kangro);
@@ -128,8 +147,14 @@ public class Sounds_Activity extends AppCompatActivity {
                 player.start();
             }
         });
+
+        // Démarrer la lecture
         player.start();
     }
+
+    /**
+     * Arrête le lecteur audio s'il est en cours d'utilisation.
+     */
     public void stopPlayer()
     {
         if (player!= null)

@@ -1,5 +1,10 @@
 package com.example.animal_quiz.models;
 
+/**
+ * Représente un animal avec ses caractéristiques principales.
+ * Contient des informations telles que le nom, l'image, le son, le régime alimentaire,
+ * mammifère ou non, et son habitat.
+ */
 public class Animal {
     private int id;
     private String name;
