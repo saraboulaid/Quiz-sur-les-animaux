@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Animal_Quiz"
         tools:targetApi="31">
         <activity
+            android:name=".VerifyAnswerActivity"
+            android:exported="false" />
+        <activity
             android:name=".QuizActivity"
             android:exported="false" />
         <activity
