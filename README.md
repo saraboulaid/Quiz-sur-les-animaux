@@ -52,9 +52,7 @@ Une application **Android ludique et éducative** pour découvrir des faits fasc
 ---
 
 ## 📂 Documentation du Projet  
-Le projet inclut une **documentation JavaDoc** générée automatiquement.  
-Elle est disponible dans le répertoire suivant :  
-📁 `Animal_Quiz/documentation/`  
+Le projet inclut une **documentation JavaDoc** générée automatiquement à partie de tools , genereate JavaDoc de Android Studio.
 
 ---
 
@@ -70,16 +68,7 @@ Ajoutez ici des captures d'écran pour illustrer l'interface et les fonctionnali
 
 ---
 
-## 🤝 Contribuer  
-Les contributions sont les bienvenues ! Si vous souhaitez améliorer ce projet :  
-1. **Forkez le dépôt**  
-2. Créez une branche avec votre fonctionnalité : `git checkout -b feature/NomFeature`  
-3. Effectuez vos modifications et poussez-les : `git push origin feature/NomFeature`  
-4. Soumettez une **Pull Request**  
-
----
-
-## 🧑‍💻 Auteur  
-Ce projet a été conçu et développé par **[Votre Nom]**.  
+## 🧑‍💻   Développeurs 
+Ce projet a été conçu et développé par **[Ihsane Benattou , Sara Boulaid , Imane Benattou]**.  
 
 ---
