@@ -1,33 +1,85 @@
-# Quiz-sur-les-animaux
-Le projet "Quiz sur les Animaux" consiste à développer une application Android ludique et éducative qui permet aux utilisateurs d'apprendre des faits intéressants sur les animaux à travers un quiz interactif et des sons d'animaux. Elle combine apprentissage et divertissement pour une expérience unique.
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Fonctionnalités
-=> Quiz sur les Animaux :
-Questions générées dynamiquement à partir d'une base de données d'animaux.
-Format à choix multiples avec des réponses distractrices.
-Différents types de questions : nom de l'animal, régime alimentaire, habitat, etc.
-=> Sons d'Animaux :
-Boutons interactifs pour jouer les sons des animaux en cliquant sur leurs images.
-=> Contenu Dynamique :
-Application alimentée par une base de données SQLite pré-remplie avec des informations sur les animaux et les types de questions.
-=> Architecture Modulaire :
-Classes dédiées comme DatabaseHelper, QuestionGenerator et Sounds_Activity pour une séparation claire des responsabilités.
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Fonctionnement de l'Application
-=> Page d'Accueil :
-Deux boutons : démarrer le quiz ou écouter les sons d'animaux.
-=> Quiz :
-Répondez aux questions générées aléatoirement.
-Choisissez parmi 4 options, dont une seule est correcte.
-=> Sons :
-Appuyez sur une image pour écouter le son de l'animal correspondant.
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Technologies utilisées : 
-Langage : Java
-Base de Données : SQLite
-Environnement : Android Studio
-UI : XML pour les mises en page
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Documentation du projet
-Le projet contient une documentation générée automatiquement à l'aide de JavaDoc. Vous pouvez la trouver dans le répertoire suivant : Animal_Quiz/documentation/
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# 🐾 Quiz sur les Animaux  
+Une application **Android ludique et éducative** pour découvrir des faits fascinants sur les animaux à travers un quiz interactif et des sons d'animaux. Combinez **apprentissage** et **divertissement** pour une expérience unique !  
+
+---
+
+## 🚀 Fonctionnalités  
+### 🎮 Quiz sur les Animaux  
+- Questions générées dynamiquement à partir d'une **base de données SQLite**.  
+- Format **QCM** (choix multiples) avec des réponses distractrices.  
+- Différents types de questions :  
+  - Nom de l'animal  
+  - Régime alimentaire  
+  - Habitat, et plus encore !  
+
+### 🔊 Sons d'Animaux  
+- **Boutons interactifs** permettant d'écouter les sons des animaux en cliquant sur leurs images.  
+
+### 📊 Contenu Dynamique  
+- Une base de données **SQLite** pré-remplie avec :  
+  - Informations détaillées sur les animaux  
+  - Génération de questions variées  
+
+### 🏗️ Architecture Modulaire  
+- Organisation claire avec des **classes dédiées** :  
+  - `DatabaseHelper` pour la gestion des données  
+  - `QuestionGenerator` pour créer les questions  
+  - `Sounds_Activity` pour les interactions avec les sons  
+
+---
+
+## 🖥️ Fonctionnement de l'Application  
+### 🏠 Page d'Accueil  
+- Deux boutons pour accéder :  
+  1. **Au quiz interactif**  
+  2. **Aux sons d'animaux**  
+
+### ❓ Quiz  
+- Répondez à des **questions générées aléatoirement**.  
+- Sélectionnez la bonne réponse parmi **4 options**.  
+
+### 🔉 Sons  
+- Cliquez sur l'image d'un animal pour **écouter son cri**.  
+
+---
+
+## 🛠️ Technologies Utilisées  
+- **Langage** : Java  
+- **Base de Données** : SQLite  
+- **Environnement** : Android Studio  
+- **UI** : XML pour les mises en page  
+
+---
+
+## 📂 Documentation du Projet  
+Le projet inclut une **documentation JavaDoc** générée automatiquement.  
+Elle est disponible dans le répertoire suivant :  
+📁 `Animal_Quiz/documentation/`  
+
+---
+
+## 📸 Aperçus de l'Application *(optionnel si des captures d'écran sont disponibles)*  
+Ajoutez ici des captures d'écran pour illustrer l'interface et les fonctionnalités.
+
+---
+
+## 💡 Idées Futures *(optionnel)*  
+- Ajouter plus d'animaux et de types de questions.  
+- Intégrer des mini-jeux éducatifs.  
+- Fonctionnalité multilingue pour atteindre un public plus large.  
+
+---
+
+## 🤝 Contribuer  
+Les contributions sont les bienvenues ! Si vous souhaitez améliorer ce projet :  
+1. **Forkez le dépôt**  
+2. Créez une branche avec votre fonctionnalité : `git checkout -b feature/NomFeature`  
+3. Effectuez vos modifications et poussez-les : `git push origin feature/NomFeature`  
+4. Soumettez une **Pull Request**  
+
+---
+
+## 🧑‍💻 Auteur  
+Ce projet a été conçu et développé par **[Votre Nom]**.  
+
+---
