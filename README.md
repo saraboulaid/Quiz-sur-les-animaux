@@ -52,7 +52,7 @@ Une application **Android ludique et éducative** pour découvrir des faits fasc
 ---
 
 ## 📂 Documentation du Projet  
-Le projet inclut une **documentation JavaDoc** générée automatiquement à partie de tools , genereate JavaDoc de Android Studio.
+Le projet inclut une **documentation JavaDoc** générée automatiquement à partie de tools , generate JavaDoc de Android Studio.
 
 ---
 
