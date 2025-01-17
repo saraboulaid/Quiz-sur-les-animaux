@@ -1,5 +1,6 @@
 package com.example.animal_quiz;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -167,6 +168,12 @@ public class Sounds_Activity extends AppCompatActivity {
     public void stop(View v)
     {
         stopPlayer();
+    }
+
+    public void back(View view) {
+        //revenir à l'accueil
+            Intent intent = new Intent(Sounds_Activity.this, MainActivity.class);
+            startActivity(intent);
     }
 }
 

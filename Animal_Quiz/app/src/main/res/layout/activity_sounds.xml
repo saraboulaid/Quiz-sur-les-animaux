@@ -172,7 +172,8 @@
                     android:height="50dp"
                     android:background="#1E40AF"
                     android:gravity="center"
-                    android:text="GO TO QUIZ"
+                    android:onClick="back"
+                    android:text="revenir à l'accueil"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp" />
 
